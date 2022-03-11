@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "588489445578",
+    "project_id": "luconnect2",
+    "storage_bucket": "luconnect2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:588489445578:android:186887708af13a1c73a433",
+        "android_client_info": {
+          "package_name": "com.example.luconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "588489445578-027kdtcphe15lo5qcec89hk4hgqkhne7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGgS4n4aa9e0Ew5OfiePDCMNrkm_fichc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "588489445578-027kdtcphe15lo5qcec89hk4hgqkhne7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
