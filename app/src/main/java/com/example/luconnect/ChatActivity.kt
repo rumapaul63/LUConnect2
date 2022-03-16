@@ -4,6 +4,7 @@ import android.content.Intent
 import android.nfc.NdefMessage
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Base64
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,14 +16,14 @@ import com.google.firebase.database.*
 
 class ChatActivity : AppCompatActivity() {
     private lateinit var chatRecyclerView: RecyclerView
-    private lateinit var messageBox:EditText
+    private lateinit var messageBox: EditText
     private lateinit var sendButton: ImageView
-    private lateinit var messageAdapter:MessageAdapter
-    private lateinit var messageList:ArrayList<Message>
-    private lateinit var mDbRef:DatabaseReference
+    private lateinit var messageAdapter: MessageAdapter
+    private lateinit var messageList: ArrayList<Message>
+    private lateinit var mDbRef: DatabaseReference
 
-    var receiverRoom:String?=null
-    var senderRoom:String?=null
+    var receiverRoom: String? = null
+    var senderRoom: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,29 +31,29 @@ class ChatActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat)
 
 
-        val name=intent.getStringExtra("name")
-        val receiverUid=intent.getStringExtra("uid")
+        val name = intent.getStringExtra("name")
+        val receiverUid = intent.getStringExtra("uid")
 
-        val senderUid=FirebaseAuth.getInstance().currentUser?.uid
-        mDbRef=FirebaseDatabase.getInstance().getReference()
+        val senderUid = FirebaseAuth.getInstance().currentUser?.uid
+        mDbRef = FirebaseDatabase.getInstance().getReference()
 
-        senderRoom = receiverUid+ senderUid
-        receiverRoom =senderUid+receiverUid
+        senderRoom = receiverUid + senderUid
+        receiverRoom = senderUid + receiverUid
 
-        supportActionBar?.title=name
+        supportActionBar?.title = name
 
-        chatRecyclerView=findViewById(R.id.chatRecyclerView)
-        messageBox=findViewById(R.id.messagebox)
-        sendButton=findViewById(R.id.sentButton)
-        messageList= ArrayList()
-        messageAdapter= MessageAdapter(this,messageList)
+        chatRecyclerView = findViewById(R.id.chatRecyclerView)
+        messageBox = findViewById(R.id.messagebox)
+        sendButton = findViewById(R.id.sentButton)
+        messageList = ArrayList()
+        messageAdapter = MessageAdapter(this, messageList)
 
-        chatRecyclerView.layoutManager=LinearLayoutManager(this)
-        chatRecyclerView.adapter=messageAdapter
+        chatRecyclerView.layoutManager = LinearLayoutManager(this)
+        chatRecyclerView.adapter = messageAdapter
 
         //logic for adding data to recyclerview
         mDbRef.child("chats").child(senderRoom!!).child("messages")
-            .addValueEventListener(object :ValueEventListener{
+            .addValueEventListener(object : ValueEventListener {
 
 
                 //with snapshot we got data from database and show it recyclerView
@@ -60,9 +61,9 @@ class ChatActivity : AppCompatActivity() {
                 override fun onDataChange(snapshot: DataSnapshot) {
 
                     messageList.clear()
-                    for(postSnapshot in snapshot.children){
+                    for (postSnapshot in snapshot.children) {
 
-                        val message=postSnapshot.getValue(Message::class.java)
+                        val message = postSnapshot.getValue(Message::class.java)
                         messageList.add(message!!)
                     }
                     messageAdapter.notifyDataSetChanged()
@@ -80,8 +81,9 @@ class ChatActivity : AppCompatActivity() {
         //Adding the message to database
         sendButton.setOnClickListener {
 
-            val message=messageBox.text.toString()
-            val messageObject=Message(message,senderUid)
+
+            val message = Helper().encryptCBC(messageBox.text.toString())
+            val messageObject = Message(message, senderUid)
 
             mDbRef.child("chats").child(senderRoom!!).child("messages").push()
                 .setValue(messageObject).addOnSuccessListener {
@@ -95,4 +97,6 @@ class ChatActivity : AppCompatActivity() {
         }
 
     }
+
+
 }
