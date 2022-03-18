@@ -36,9 +36,9 @@ class SignUp : AppCompatActivity() {
 
     val PASSWORD_PATTERN = Pattern.compile(
              "^"+
-                     "\"(?=.*[@#\$%^&+=.])\""
+                     "(?=.*[@#\$%^&+=.])"
                      +"(?=\\S+$)"+
-                     ".{4,}"
+                     ".{8,}"
                      +"$"
 
 
