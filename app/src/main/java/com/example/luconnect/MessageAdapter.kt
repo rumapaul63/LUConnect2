@@ -41,13 +41,13 @@ class MessageAdapter(val context:Context,val messageList:ArrayList<Message>):
             //here do stuff for sent view holder
 
             val viewHolder=holder as SentViewHolder
-            holder.sentMessage.text=currentMessage.message
+            holder.sentMessage.text=Helper().decryptCBC(currentMessage.message.toString())
 
         }else{
 
             //here do stuff for receive view holder
             val viewHolder=holder as ReceiveViewHolder
-            holder.receiveMessage.text=currentMessage.message
+            holder.receiveMessage.text=Helper().decryptCBC(currentMessage.message.toString())
 
         }
 
