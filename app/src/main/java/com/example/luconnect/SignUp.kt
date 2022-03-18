@@ -1,5 +1,6 @@
 package com.example.luconnect
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -36,9 +37,9 @@ class SignUp : AppCompatActivity() {
 
     val PASSWORD_PATTERN = Pattern.compile(
              "^"+
-                     "\"(?=.*[@#\$%^&+=.])\""
+                     "(?=.*[@#\$%^&+=.])"
                      +"(?=\\S+$)"+
-                     ".{4,}"
+                     ".{8,}"
                      +"$"
 
 
@@ -116,6 +117,7 @@ class SignUp : AppCompatActivity() {
 
 
 
+     @SuppressLint("NewApi")
      private fun validateEmail():Boolean{
         val emailInput:String=edtEmail.text.toString().trim()
          if (emailInput.isEmpty()){
