@@ -1,5 +1,6 @@
 package com.example.luconnect
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
@@ -35,15 +37,24 @@ class SignUp : AppCompatActivity() {
     //Regex using for password pattern
 
     val PASSWORD_PATTERN = Pattern.compile(
-             "^"+
-                     "\"(?=.*[@#\$%^&+=.])\""
-                     +"(?=\\S+$)"+
-                     ".{4,}"
-                     +"$"
+        "^"+
+
+                "(?=.*[@#\$%^&+=.])"
+                +"(?=\\S+$)"+
+                ".{8,}"
+                +"$"
 
 
     )
 
+    //val USERNAME_PATTERN = Pattern.compile(
+    // "^"+
+    //   "(a-zA-Z)"+
+    // ".{6,}"
+    // +"$"
+
+
+    //)
     companion object{
         private const val RC_SIGN_IN=120
     }
@@ -114,26 +125,38 @@ class SignUp : AppCompatActivity() {
 
     //Create two method for password and email using regex
 
+    //private fun validateName():Boolean{
+    // val nameInput=edtName.text.toString().trim()
+    //if(nameInput.isEmpty()){
+    // edtName.error="Field is empty"
+    //  return false
+    // }else if (!USERNAME_PATTERN.matcher(nameInput).matches()){
+    //  edtName.error="Enter a valid name"
+    //  return false
+    //}else{
+    // edtName.error= null
+    // return true
+    //}
+    // }
 
-
-     private fun validateEmail():Boolean{
+    private fun validateEmail():Boolean{
         val emailInput:String=edtEmail.text.toString().trim()
-         if (emailInput.isEmpty()){
-             edtEmail.error="Field is empty"
-             return false
-         }
-         else if(!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
-             edtEmail.error = "Enter a valid email"
-             return false
+        if (emailInput.isEmpty()){
+            edtEmail.error="Field is empty"
+            return false
+        }
+        else if(!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            edtEmail.error = "Enter a valid email"
+            return false
 
-         }else{
-             edtEmail.error=null
-             return true
-         }
+        }else{
+            edtEmail.error=null
+            return true
+        }
 
-     }
+    }
     private fun validatePassword():Boolean{
-          val passwordInput:String=edtPassword.text.toString().trim()
+        val passwordInput:String=edtPassword.text.toString().trim()
 
         if (passwordInput.isEmpty()){
             edtPassword.error="Field is Empty"
@@ -144,7 +167,7 @@ class SignUp : AppCompatActivity() {
             return false
 
         }else {
-              edtPassword.error=null
+            edtPassword.error=null
             return true
 
         }
