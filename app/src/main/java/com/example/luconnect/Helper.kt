@@ -1,22 +1,32 @@
 package com.example.luconnect
 
 import android.util.Base64
+import android.widget.Toast
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-class Helper {
-    val SECRET_KEY = "secretKey"
-    val SECRET_IV = "secretIV"
+object Helper {
+    val SECRET_KEY = "secretKey1234567"
+    val SECRET_IV = "secretIVsecretIV"
 
     fun encryptCBC(value: String): String {
-        val iv = IvParameterSpec(SECRET_IV.toByteArray())
-        val keySpec = SecretKeySpec(SECRET_KEY.toByteArray(), "AES")
-        val cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING")
-        cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv)
-        val crypted = cipher.doFinal(value.toByteArray())
-        val encodedByte = Base64.encode(crypted, Base64.DEFAULT)
-        return String(encodedByte)
+        var encMsg: String = "";
+        val encodedByte: ByteArray
+        try {
+            val iv = IvParameterSpec(SECRET_IV.toByteArray())
+            val keySpec = SecretKeySpec(SECRET_KEY.toByteArray(), "AES")
+            val cipher = Cipher.getInstance("AES/CBC/PKCS5PADDING")
+            cipher.init(Cipher.ENCRYPT_MODE, keySpec, iv)
+            val crypted = cipher.doFinal(value.toByteArray())
+            encodedByte = Base64.encode(crypted, Base64.DEFAULT)
+            encMsg = String(encodedByte)
+        }
+        catch (ex: Exception)
+        {
+            throw ex;
+        }
+        return encMsg;
     }
 
 

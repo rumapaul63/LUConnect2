@@ -82,7 +82,7 @@ class ChatActivity : AppCompatActivity() {
         sendButton.setOnClickListener {
 
 
-            val message = Helper().encryptCBC(messageBox.text.toString())
+            val message = Helper.encryptCBC(messageBox.text.toString())
             val messageObject = Message(message, senderUid)
 
             mDbRef.child("chats").child(senderRoom!!).child("messages").push()
