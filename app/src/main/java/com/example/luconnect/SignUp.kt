@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.util.*
 import java.util.regex.Pattern
 
 
@@ -114,10 +115,14 @@ class SignUp : AppCompatActivity() {
 
         }
     }
-
-    //Create two method for password and email using regex
-
-
+    private fun validateEmailProviders(emailInput: String): Boolean
+    {
+        var rc = false;
+        var temp = emailInput.lowercase(Locale.getDefault());
+        if (temp.endsWith("gmail.com") || temp.endsWith("hotmail.com") || temp.endsWith("yahoo.com"))
+            rc =true
+        return rc;
+    }
 
     private fun validateEmail():Boolean{
         val emailInput:String=edtEmail.text.toString().trim()
@@ -129,7 +134,12 @@ class SignUp : AppCompatActivity() {
             edtEmail.error = "Enter a valid email"
             return false
 
-        }else{
+        }else if (!validateEmailProviders(emailInput)){
+            edtEmail.error = "Enter a valid email provider"
+            return false
+        }
+        else
+        {
             edtEmail.error=null
             return true
         }
