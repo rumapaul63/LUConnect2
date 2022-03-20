@@ -5,98 +5,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/parent"
+    android:background="@color/whiteCardColor"
     tools:context=".SignUp">
 
-
-    <ImageView
-        android:id="@+id/btn_Google"
-        android:layout_width="110dp"
-        android:layout_height="110dp"
-        android:layout_below="@id/btn_SignUp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"
-        android:src="@drawable/google" />
-
-
-    <TextView
-        android:id="@+id/signUpWithGoogle"
-        android:layout_width="150dp"
-        android:layout_height="48dp"
-        android:layout_below="@id/btn_SignUp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/edt_background"
-        android:gravity="center"
-        android:onClick="signIn"
-        android:paddingLeft="13dp"
-        android:text=" Or Sign Up With Google"
-        app:layout_constraintBottom_toTopOf="@id/btn_Google" />
-
-    <ImageView
-        android:id="@+id/app_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:src="@drawable/leadinglogo"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="70dp"/>
-
-    <EditText
-        android:id="@+id/edt_name"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/app_logo"
-        android:layout_marginTop="10dp"
-        android:hint="Name"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edt_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:weightSum="12">
 
-    <EditText
-        android:id="@+id/edt_email"
+        <LinearLayout
+            style="@style/parent"
+            android:layout_weight="3"
+            android:background="@drawable/login_shape_bk"
+            android:orientation="vertical">
+
+            <ImageView
+                style="@style/parent"
+                android:background="@drawable/ic_login_bk"
+                android:contentDescription="login background" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edt_name"
-        android:layout_marginTop="10dp"
-        android:hint="Email"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edt_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
-
-    <EditText
-        android:id="@+id/edt_password"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/edt_email"
-        android:layout_marginTop="10dp"
-        android:hint="Password"
-        app:endIconMode="password_toggle"
-        android:inputType="textPassword"
-        android:paddingLeft="13dp"
-        android:background="@drawable/edt_background"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp">
 
 
-    <Button
-        android:id="@+id/btn_SignUp"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edt_password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/btn_background"
-        android:onClick="showGoogleSignup"
-        android:text="Sign Up"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        <ImageView
+            style="@style/headerText"
+            android:layout_gravity="center"
+            android:background="@drawable/luuuu"/>
+        <LinearLayout
+            style="@style/linearParent"
+            android:layout_gravity="center"
+            android:padding="@dimen/loginViewsMargin"
+            android:layout_marginTop="70dp"
+            android:layout_height="500dp"
+            android:elevation="5dp"
+            android:layout_marginBottom="@dimen/loginViewsMargin"
+
+            >
+
+            <TextView
+                style="@style/headerTextPrimary"
+                android:text="Create an account"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+
+            <EditText
+                android:id="@+id/edt_name"
+                style="@style/modifiedEditText"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_person"
+                android:hint="Enter Your name"/>
+
+
+            <EditText
+                android:id="@+id/edt_email"
+                style="@style/modifiedEditText"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_email"
+                android:hint="Emil here"/>
 
 
 
+            <EditText
+                android:id="@+id/edt_password"
+                style="@style/modifiedEditText"
+                android:hint="Password Here"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_lock"
+                android:inputType="textPassword"/>
 
 
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/btn_SignUp"
+                style="@style/loginButton"
+                android:text="Sign Up"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+            <TextView
+                android:id="@+id/btn_SignIn"
+                style="@style/parent"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textColor="@color/primaryTextColor"
+                android:text="Already have an account?"
+                android:onClick="viewRegisterClicked"
+                android:layout_marginTop="@dimen/loginViewsMargin"/>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    </RelativeLayout>

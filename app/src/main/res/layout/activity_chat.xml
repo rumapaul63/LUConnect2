@@ -4,43 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg"
     tools:context=".ChatActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/chatRecyclerView"
-        android:layout_above="@+id/linearLayout"
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         />
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_alignParentBottom="true"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp"
-        android:weightSum="100">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/messagebox"
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:hint="Send message"
-            android:paddingLeft="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/message_box_background"
-            android:layout_weight="85"/>
 
-        <ImageView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/messageInputContainer"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="6dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/input_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            tools:context="com.example.chattutorial.ChannelActivity">
+
+            <ImageButton
+                android:id="@+id/addEmoticon"
+                android:layout_width="21dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:background="@null"
+                android:src="@drawable/ic_insert_emoticon_black_24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:tint="@color/message_input_button_inactive" />
+
+            <EditText
+                android:id="@+id/messagebox"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:background="@android:color/transparent"
+                android:hint="Type a message"
+                app:layout_constraintLeft_toRightOf="@+id/addEmoticon"
+                app:layout_constraintRight_toLeftOf="@+id/addAttachment" />
+
+            <ImageButton
+                android:id="@+id/addAttachment"
+                android:layout_width="22dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:background="@null"
+                android:src="@drawable/ic_attach_file_black_24dp"
+                app:layout_constraintRight_toLeftOf="@+id/takePicture"
+                app:tint="@color/message_input_button_inactive" />
+
+            <ImageButton
+                android:id="@+id/takePicture"
+                android:layout_width="22dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:background="@null"
+                android:src="@drawable/ic_camera_alt_black_24dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:tint="@color/floating_message_send" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/sentButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/send"
-            android:layout_weight="20"/>
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="6dp"
+            android:src="@drawable/sendd"
+            app:backgroundTint="@color/floating_message_send"
+            app:fabCustomSize="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/messageInputContainer" />
 
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
 
 </RelativeLayout>
