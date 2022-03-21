@@ -135,7 +135,7 @@ class SignUp : AppCompatActivity() {
             return false
 
         }else if (!validateEmailProviders(emailInput)){
-            edtEmail.error = "Enter a valid email provider"
+            edtEmail.error = "Enter a valid email provider, eg. gmail.com, yahoo.com, hotmail.com"
             return false
         }
         else

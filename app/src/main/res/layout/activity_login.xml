@@ -109,12 +109,7 @@
                 android:onClick="viewRegisterClicked"
                 android:layout_marginTop="@dimen/loginViewsMargin"/>
 
-            <Button
-                android:id="@+id/signUpWithGoogle"
-                style="@style/loginButton"
-                android:text="With Google"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/loginViewsMargin"/>
+
 
 
         </LinearLayout>
