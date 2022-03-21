@@ -119,7 +119,7 @@ class SignUp : AppCompatActivity() {
     {
         var rc = false;
         var temp = emailInput.lowercase(Locale.getDefault());
-        if (temp.endsWith("gmail.com") || temp.endsWith("hotmail.com") || temp.endsWith("yahoo.com"))
+        if (temp.endsWith("gmail.com") || temp.endsWith("hotmail.com") || temp.endsWith("yahoo.com")||temp.endsWith("lus.ac.bd"))
             rc =true
         return rc;
     }
